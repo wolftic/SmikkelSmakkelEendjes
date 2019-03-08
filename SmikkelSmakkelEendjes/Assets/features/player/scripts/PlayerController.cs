@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : Singleton<PlayerController>
 {
+    public Action OnLoaded;
+
     public Action<int> OnPlayerBite;
     public Action<int, int> OnScoreRecieved;
 
@@ -19,6 +21,8 @@ public class PlayerController : Singleton<PlayerController>
     public void Init()
     {
         ResetAllPlayers();
+
+        if (OnLoaded != null) OnLoaded();
     }
 
     /// <summary>
