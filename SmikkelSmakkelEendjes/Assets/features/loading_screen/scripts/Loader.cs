@@ -3,8 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/*
+                NOTE:
+    IF YOU NEED TO LOAD SOMETHING
+    INCREASE THE "AMOUNT OF LOADABLES"
+    AND ADD A LOADING FUNCTION
+    AND A LOADING DONE FUNCTION
+    
+    GOOD EXAMPLES ARE
+    "LoadGameStateController()"
+    AND "OnGameStateControllerLoaded()"
+*/
+
+
 public class Loader : MonoBehaviour {
-    private const int AMOUNT_OF_LOADABLES = 1;
+    private const int AMOUNT_OF_LOADABLES = 2;
     
     [SerializeField]
     private Text _loadingText;
@@ -35,13 +49,26 @@ public class Loader : MonoBehaviour {
 
     private void StartLoadingSequence() 
     {
-        LoadPlayerController();
+        LoadGameStateController();
     }
 
     private void FinishLoadingSequence() 
     {
         Debug.Log("Finished loading");
+        GameStateController.Instance.SetState(GameStateType.MAIN_MENU);
+    }
 
+    private void LoadGameStateController() 
+    {
+        GameStateController.Instance.OnLoaded += OnGameStateControllerLoaded;
+        GameStateController.Instance.Init();
+    }
+
+    private void OnGameStateControllerLoaded() 
+    {
+        GameStateController.Instance.OnLoaded -= OnGameStateControllerLoaded;
+        AddProgress();
+        LoadPlayerController();
     }
 
     private void LoadPlayerController() 
@@ -54,16 +81,7 @@ public class Loader : MonoBehaviour {
     {
         PlayerController.Instance.OnLoaded -= OnPlayerControllerLoaded;
         AddProgress();
-    //     LoadFoodController();
     }
-
-    // private void LoadFoodController() {
-
-    // }
-
-    // private void OnFoodLoaded() {
-
-    // }
 
     private void Reset() 
     {
