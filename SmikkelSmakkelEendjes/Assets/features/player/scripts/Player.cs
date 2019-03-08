@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     private int _playerID;
     private int _playerScore;
+    [SerializeField]
+    private GameObject _biteField;
 
     public void Init(int id)
     {
@@ -20,7 +22,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void Bite()
     {
-        PlayerController.Instance.Bite(_playerID, transform.position);
+        PlayerController.Instance.Bite(_playerID, _biteField.transform.position);
     }
 
     private void OnBite(int id)
