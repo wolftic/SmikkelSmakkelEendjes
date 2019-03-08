@@ -1,13 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameStateManager : MonoBehaviour {
     [SerializeField]
     private List<GameStateScene> _scenePrefabs;
+    [SerializeField]
+    private Image _transitionImage;
     
     private List<GameStateScene> _scenes = new List<GameStateScene>();
-    
+    private GameStateScene _currentScene;
+
     private void Awake() 
     {
         GameStateController.Instance.OnLoadScenes += OnLoadScenes;
@@ -55,7 +60,6 @@ public class GameStateManager : MonoBehaviour {
     private void OnGameStateChange(GameStateType type, object data) 
     {
         GameStateScene scene = GetScene(type);
-        TurnOffAllScenes();
 
         if (scene == null) 
         {
@@ -63,8 +67,16 @@ public class GameStateManager : MonoBehaviour {
             return;
         }
 
+        _transitionImage.DOFade(1f, .33f).OnComplete(StartTransition);
         scene.CustomStart(data);
-        scene.gameObject.SetActive(true);
+        _currentScene = scene;
+    }
+
+    private void StartTransition()
+    {
+        TurnOffAllScenes();
+        _currentScene.gameObject.SetActive(true);
+        _transitionImage.DOFade(0f, .33f);
     }
 
     private void OnDestroy() 

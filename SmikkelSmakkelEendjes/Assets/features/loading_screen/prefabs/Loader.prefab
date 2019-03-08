@@ -297,6 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadingText: {fileID: 114404613845014520}
   _progressBar: {fileID: 114107629364721166}
+  _loadingCanvas: {fileID: 223422102471266912}
 --- !u!114 &114972118076657020
 MonoBehaviour:
   m_ObjectHideFlags: 1

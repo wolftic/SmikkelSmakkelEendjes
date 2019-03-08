@@ -24,6 +24,8 @@ public class Loader : MonoBehaviour {
     private Text _loadingText;
     [SerializeField]
     private Image _progressBar;
+    [SerializeField]
+    private Canvas _loadingCanvas;
 
     private float _progress = 0f;
     private int _loaded = 0;
@@ -49,12 +51,14 @@ public class Loader : MonoBehaviour {
 
     private void StartLoadingSequence() 
     {
+        Reset();
         LoadGameStateController();
     }
 
     private void FinishLoadingSequence() 
     {
         Debug.Log("Finished loading");
+        _loadingCanvas.gameObject.SetActive(false);
         GameStateController.Instance.SetState(GameStateType.MAIN_MENU);
     }
 
@@ -90,5 +94,6 @@ public class Loader : MonoBehaviour {
 
         _loadingText.text = "";
         _progressBar.fillAmount = 0;
+        _loadingCanvas.gameObject.SetActive(true);
     }
 }
