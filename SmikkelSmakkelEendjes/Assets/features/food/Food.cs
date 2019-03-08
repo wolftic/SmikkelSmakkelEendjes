@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Food  :  MonoBehaviour
 {
-    public int Speed
+    public Vector3 Position
     {
-        get;
-        private set;
+        get { return this.gameObject.transform.position; }
+        set { this.gameObject.transform.position = value; }
     }
-
-    public int Size
+    public int Speed
     {
         get;
         private set;
@@ -22,18 +21,22 @@ public class Food  :  MonoBehaviour
         private set;
     }
 
-    public void Init(int speed, int size, int scoreAmount)
+    public int ID
+    {
+        get;
+        private set;
+    }
+    public void Init(int id, int speed, int scoreAmount)
     {
         Reset();
         Speed = speed;
-        Size = size;
         ScoreAmount = scoreAmount;
+        ID = id;
     }
 
     private void Reset()
     {
         Speed = 0;
-        Size = 0;
         ScoreAmount = 0;
     }
 }
