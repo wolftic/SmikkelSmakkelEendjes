@@ -9,31 +9,30 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1907088157659370}
+  m_RootGameObject: {fileID: 1310285534906840}
   m_IsPrefabParent: 1
---- !u!1 &1907088157659370
+--- !u!1 &1310285534906840
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4184521625072716}
-  - component: {fileID: 212841582103812688}
-  - component: {fileID: 114048191548483706}
+  - component: {fileID: 4870915959464480}
+  - component: {fileID: 212649308942099796}
   m_Layer: 0
-  m_Name: food
+  m_Name: erwt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4184521625072716
+--- !u!4 &4870915959464480
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1907088157659370}
+  m_GameObject: {fileID: 1310285534906840}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -41,23 +40,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114048191548483706
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1907088157659370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 382fc516bc2d7c34fa27f199ff455445, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!212 &212841582103812688
+--- !u!212 &212649308942099796
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1907088157659370}
+  m_GameObject: {fileID: 1310285534906840}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
