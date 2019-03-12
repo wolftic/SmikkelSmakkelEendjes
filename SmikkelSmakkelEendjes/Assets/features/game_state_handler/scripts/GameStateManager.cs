@@ -67,8 +67,11 @@ public class GameStateManager : MonoBehaviour {
             return;
         }
 
+        if (_currentScene != null) _currentScene.Close();
+
         _transitionImage.DOFade(1f, .33f).OnComplete(StartTransition);
         scene.CustomStart(data);
+
         _currentScene = scene;
     }
 
@@ -76,7 +79,7 @@ public class GameStateManager : MonoBehaviour {
     {
         TurnOffAllScenes();
         _currentScene.gameObject.SetActive(true);
-        _transitionImage.DOFade(0f, .33f);
+        _transitionImage.DOFade(0f, .33f).OnComplete(_currentScene.Open);
     }
 
     private void OnDestroy() 
