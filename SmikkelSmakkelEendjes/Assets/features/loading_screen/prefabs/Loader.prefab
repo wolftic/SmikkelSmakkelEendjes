@@ -298,6 +298,9 @@ MonoBehaviour:
   _loadingText: {fileID: 114404613845014520}
   _progressBar: {fileID: 114107629364721166}
   _loadingCanvas: {fileID: 223422102471266912}
+  _popupCanvas: {fileID: 223996046560144532}
+  _popupsToSpawn:
+  - {fileID: 114066550772885636, guid: 0c66f93117efe8841813eeb6903631bc, type: 2}
 --- !u!114 &114972118076657020
 MonoBehaviour:
   m_ObjectHideFlags: 1

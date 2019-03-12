@@ -20,12 +20,19 @@ using UnityEngine.UI;
 public class Loader : MonoBehaviour {
     private const int AMOUNT_OF_LOADABLES = 2;
     
+    [Header("Loading screen")]
     [SerializeField]
     private Text _loadingText;
     [SerializeField]
     private Image _progressBar;
     [SerializeField]
     private Canvas _loadingCanvas;
+
+    [Header("Popups")]
+    [SerializeField]
+    private Canvas _popupCanvas;
+    [SerializeField]
+    private List<PopupBase> _popupsToSpawn;
 
     private float _progress = 0f;
     private int _loaded = 0;
@@ -57,6 +64,15 @@ public class Loader : MonoBehaviour {
 
     private void FinishLoadingSequence() 
     {
+        PopupBase popup;
+        for (int i = 0; i < _popupsToSpawn.Count; i++)
+        {
+            popup = Instantiate(_popupsToSpawn[i]).GetComponent<PopupBase>();
+            popup.transform.SetParent(_popupCanvas.transform);
+            popup.gameObject.SetActive(true);
+            popup.transform.localPosition = Vector3.zero;
+        }
+        
         Debug.Log("Finished loading");
         _loadingCanvas.gameObject.SetActive(false);
         GameStateController.Instance.SetState(GameStateType.MAIN_MENU);
