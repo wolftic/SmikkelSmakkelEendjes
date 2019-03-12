@@ -11,11 +11,9 @@ public class GameStateScene : MonoBehaviour {
 
     public virtual void Open()
     {
-        PopupManager.Instance.AddPopupToQueue(Popups.EXAMPLE_POPUP);
     }
 
     public virtual void Close()
     {
-        PopupManager.Instance.ClosePopup(Popups.EXAMPLE_POPUP);
     }
 }

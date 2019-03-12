@@ -69,8 +69,8 @@ public class Loader : MonoBehaviour {
         {
             popup = Instantiate(_popupsToSpawn[i]).GetComponent<PopupBase>();
             popup.transform.SetParent(_popupCanvas.transform);
-            popup.gameObject.SetActive(true);
             popup.transform.localPosition = Vector3.zero;
+            popup.transform.localScale = Vector3.one;
         }
         
         Debug.Log("Finished loading");

@@ -12,8 +12,8 @@ public class PopupManager : Singleton<PopupManager> {
     /// <param name="popup"></param>
     public void RegisterPopup(PopupBase popup) 
     {
-        _popups.Add(popup);
         popup.gameObject.SetActive(false);
+        _popups.Add(popup);
     }
 
     /// <summary>
@@ -100,7 +100,7 @@ public class PopupManager : Singleton<PopupManager> {
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)) 
+        if (Input.GetKeyDown(KeyCode.Escape)) 
         {
             CloseLastPopup();
         }
