@@ -10,28 +10,31 @@ public class FoodController : Singleton<FoodController> {
     public Action OnFoodSaved;
 
     public Food[] Foods;
-    public Food food;
     void Start()
     {
-        FoodSpawner.Instance.OnFoodCreated += SaveFoodsToArray;
+
     }
 
-    private void SaveFoodsToArray(Food[] foods)
-    {
-        Foods = foods;
-        if (OnFoodSaved != null) OnFoodSaved();
-    }
-
-    public void OnDestroy(int id)
+    public void Destroy(int id)
     {
         if (OnDestroyed != null) OnDestroyed(id);
+
     }
     
     void Update () {
 		
 	}
-    private void MoveBackFood(Food food)
+    public void SaveFood(Food[] food)
+    {
+        Foods = food;
+        if (OnFoodSaved != null) OnFoodSaved();
+    }
+    public void MoveBackFood(Food food)
     {
         food.Position = new Vector3(Screen.width, food.Position.y);
+    }
+    public void MoveFood(Food food)
+    {
+        food.Position += new Vector3(-food.Speed, 0);
     }
 }

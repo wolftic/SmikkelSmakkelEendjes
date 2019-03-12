@@ -9,6 +9,7 @@ public class Food  :  MonoBehaviour
         get { return this.gameObject.transform.position; }
         set { this.gameObject.transform.position = value; }
     }
+
     public int Speed
     {
         get;
@@ -26,6 +27,7 @@ public class Food  :  MonoBehaviour
         get;
         private set;
     }
+
     public void Init(int id, int speed, int scoreAmount)
     {
         Reset();
