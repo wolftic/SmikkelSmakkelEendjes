@@ -84,7 +84,10 @@ public class GameStateManager : MonoBehaviour {
 
     private void OnDestroy() 
     {
-        GameStateController.Instance.OnLoadScenes -= OnLoadScenes;
-        GameStateController.Instance.OnGameStateChange -= OnGameStateChange;
+        if (GameStateController.HasInstance()) 
+        {
+            GameStateController.Instance.OnLoadScenes -= OnLoadScenes;
+            GameStateController.Instance.OnGameStateChange -= OnGameStateChange;
+        }
     }
 }
