@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour {
     [SerializeField]
     private Vector3[] _spawnPositions;
+    [SerializeField]
+    private GameObject _foodObject;
 
 	void Start () {
 		
@@ -14,7 +16,7 @@ public class GameController : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            FoodSpawner.Instance.Init(_spawnPositions);
+            FoodSpawner.Instance.Init(_foodObject);
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {

@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Food  :  MonoBehaviour
+public class Food : MonoBehaviour
 {
-    public Vector3 Position
-    {
-        get { return this.gameObject.transform.position; }
-        set { this.gameObject.transform.position = value; }
-    }
 
-    public int Speed
+    public float Speed
     {
         get;
         private set;
@@ -28,7 +23,14 @@ public class Food  :  MonoBehaviour
         private set;
     }
 
-    public void Init(int id, int speed, int scoreAmount)
+    public Food(int id, float speed, int scoreAmount)
+    {
+        Speed = speed;
+        ScoreAmount = scoreAmount;
+        ID = id;
+    }
+
+    public void Init(int id, float speed, int scoreAmount)
     {
         Reset();
         Speed = speed;

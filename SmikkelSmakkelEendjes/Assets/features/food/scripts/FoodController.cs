@@ -9,7 +9,8 @@ public class FoodController : Singleton<FoodController> {
     public Action<int> OnSpawned;
     public Action OnFoodSaved;
 
-    public Food[] Foods;
+    public GameObject[] Foods;
+    public Food[] FoodParameters;
     void Start()
     {
 
@@ -24,17 +25,18 @@ public class FoodController : Singleton<FoodController> {
     void Update () {
 		
 	}
-    public void SaveFood(Food[] food)
+    public void SaveFood(GameObject[] foodObj, Food[] food)
     {
-        Foods = food;
-        if (OnFoodSaved != null) OnFoodSaved();
+        Foods = foodObj;
+        FoodParameters = food;
     }
-    public void MoveBackFood(Food food)
+    public void MoveBackFood(int id)
     {
-        food.Position = new Vector3(Screen.width, food.Position.y);
+        Foods[id].transform.position = new Vector3(6, id);
     }
-    public void MoveFood(Food food)
+    public void MoveFood(int id)
     {
-        food.Position += new Vector3(-food.Speed, 0);
+        Foods[id].transform.position += new Vector3(-FoodParameters[id].Speed, 0);
+        print(-FoodParameters[id].Speed);
     }
 }
