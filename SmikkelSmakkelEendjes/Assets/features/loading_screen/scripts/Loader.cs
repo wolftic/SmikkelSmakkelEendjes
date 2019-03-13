@@ -3,13 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Loader : MonoBehaviour {
-    private const int AMOUNT_OF_LOADABLES = 1;
+
+/*
+                NOTE:
+    IF YOU NEED TO LOAD SOMETHING
+    INCREASE THE "AMOUNT OF LOADABLES"
+    AND ADD A LOADING FUNCTION
+    AND A LOADING DONE FUNCTION
     
+    GOOD EXAMPLES ARE
+    "LoadGameStateController()"
+    AND "OnGameStateControllerLoaded()"
+*/
+
+
+public class Loader : MonoBehaviour {
+    private const int AMOUNT_OF_LOADABLES = 2;
+    
+    [Header("Loading screen")]
     [SerializeField]
     private Text _loadingText;
     [SerializeField]
     private Image _progressBar;
+    [SerializeField]
+    private Canvas _loadingCanvas;
+
+    [Header("Popups")]
+    [SerializeField]
+    private Canvas _popupCanvas;
+    [SerializeField]
+    private List<PopupBase> _popupsToSpawn;
 
     private float _progress = 0f;
     private int _loaded = 0;
@@ -35,13 +58,37 @@ public class Loader : MonoBehaviour {
 
     private void StartLoadingSequence() 
     {
-        LoadPlayerController();
+        Reset();
+        LoadGameStateController();
     }
 
     private void FinishLoadingSequence() 
     {
+        PopupBase popup;
+        for (int i = 0; i < _popupsToSpawn.Count; i++)
+        {
+            popup = Instantiate(_popupsToSpawn[i]).GetComponent<PopupBase>();
+            popup.transform.SetParent(_popupCanvas.transform);
+            popup.transform.localPosition = Vector3.zero;
+            popup.transform.localScale = Vector3.one;
+        }
+        
         Debug.Log("Finished loading");
+        _loadingCanvas.gameObject.SetActive(false);
+        GameStateController.Instance.SetState(GameStateType.MAIN_MENU);
+    }
 
+    private void LoadGameStateController() 
+    {
+        GameStateController.Instance.OnLoaded += OnGameStateControllerLoaded;
+        GameStateController.Instance.Init();
+    }
+
+    private void OnGameStateControllerLoaded() 
+    {
+        GameStateController.Instance.OnLoaded -= OnGameStateControllerLoaded;
+        AddProgress();
+        LoadPlayerController();
     }
 
     private void LoadPlayerController() 
@@ -54,16 +101,7 @@ public class Loader : MonoBehaviour {
     {
         PlayerController.Instance.OnLoaded -= OnPlayerControllerLoaded;
         AddProgress();
-    //     LoadFoodController();
     }
-
-    // private void LoadFoodController() {
-
-    // }
-
-    // private void OnFoodLoaded() {
-
-    // }
 
     private void Reset() 
     {
@@ -72,5 +110,6 @@ public class Loader : MonoBehaviour {
 
         _loadingText.text = "";
         _progressBar.fillAmount = 0;
+        _loadingCanvas.gameObject.SetActive(true);
     }
 }
