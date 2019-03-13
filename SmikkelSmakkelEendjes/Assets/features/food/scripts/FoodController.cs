@@ -7,10 +7,11 @@ public class FoodController : Singleton<FoodController> {
 
     public Action<int> OnDestroyed;
     public Action<int> OnSpawned;
+    public Action<int> OnScore;
+    public Action<int> OnMovedBack;
     public Action OnFoodSaved;
 
-    public GameObject[] Foods;
-    public Food[] FoodParameters;
+    public Food[] Foods;
     void Start()
     {
 
@@ -23,20 +24,29 @@ public class FoodController : Singleton<FoodController> {
     }
     
     void Update () {
-		
 	}
-    public void SaveFood(GameObject[] foodObj, Food[] food)
+    public void AddScore(int id)
     {
-        Foods = foodObj;
-        FoodParameters = food;
+        if (OnScore != null) OnScore(Foods[id].ScoreAmount);
     }
-    public void MoveBackFood(int id)
+    public void SaveFood(Food[] food)
     {
-        Foods[id].transform.position = new Vector3(6, id);
+        Foods = food;
+    }
+    public void MoveBackFood(int id, float moveAmount)
+    {
+        Foods[id].transform.position = new Vector3(moveAmount, id);
     }
     public void MoveFood(int id)
     {
-        Foods[id].transform.position += new Vector3(-FoodParameters[id].Speed, 0);
-        print(-FoodParameters[id].Speed);
+        Foods[id].transform.position += new Vector3(-Foods[id].Speed, 0);
+    }
+    public void InitFood(int id, float speed, float rotationSpeed, int scoreAmount, string sprite)
+    {
+        Foods[id].Init(id, speed, rotationSpeed, scoreAmount, sprite);
+    }
+    public void RotateFood(int id)
+    {
+        Foods[id].transform.localEulerAngles += new Vector3(0, 0, Foods[id].RotationSpeed);
     }
 }

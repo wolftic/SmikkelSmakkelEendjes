@@ -4,20 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FoodChecker : MonoBehaviour {
-
-    private void Start()
-    {
-        //FoodController.Instance.OnFoodSaved += StartChecking;
-    }
+    private const float SCREEN_WIDTH = 3f;
     void Update()
     {
         if (FoodController.Instance.Foods.Length <= 0) return;
         for (int i = 0; i < FoodController.Instance.Foods.Length; i++)
         {
-            FoodController.Instance.MoveFood(FoodController.Instance.FoodParameters[i].ID);
-            if(FoodController.Instance.Foods[i].transform.position.x <= -5)
+            FoodController.Instance.MoveFood(i);
+            FoodController.Instance.RotateFood(i);
+            if(FoodController.Instance.Foods[i].transform.position.x <= -SCREEN_WIDTH)
             {
-                FoodController.Instance.MoveBackFood(i);
+                FoodSpawner.Instance.MoveBackFood(i, SCREEN_WIDTH);
             }
         }
     }

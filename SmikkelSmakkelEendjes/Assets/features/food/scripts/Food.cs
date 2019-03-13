@@ -4,7 +4,21 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-
+    public Vector3 Position
+    {
+        get { return this.transform.position; }
+        set { this.transform.position = value; }
+    }
+    public Vector3 Rotation
+    {
+        get { return this.transform.localEulerAngles; }
+        set { this.transform.localEulerAngles = value; }
+    }
+    public Sprite Sprite
+    {
+        get { return this.GetComponent<SpriteRenderer>().sprite; }
+        set { this.GetComponent<SpriteRenderer>().sprite = value; }
+    }
     public float Speed
     {
         get;
@@ -23,24 +37,18 @@ public class Food : MonoBehaviour
         private set;
     }
 
-    public Food(int id, float speed, int scoreAmount)
+    public float RotationSpeed
+    {
+        get;
+        private set;
+    }
+
+    public void Init(int id, float speed, float rotationSpeed, int scoreAmount, string sprite)
     {
         Speed = speed;
         ScoreAmount = scoreAmount;
         ID = id;
-    }
-
-    public void Init(int id, float speed, int scoreAmount)
-    {
-        Reset();
-        Speed = speed;
-        ScoreAmount = scoreAmount;
-        ID = id;
-    }
-
-    private void Reset()
-    {
-        Speed = 0;
-        ScoreAmount = 0;
+        RotationSpeed = rotationSpeed;
+        Sprite = Resources.Load<Sprite>(sprite);
     }
 }
