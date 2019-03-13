@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4527828610912732}
   - component: {fileID: 61099952639089384}
   m_Layer: 0
-  m_Name: Bitefield
+  m_Name: hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,6 +35,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4009482613521528}
+  - component: {fileID: 114950827515796238}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -50,7 +51,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4984068260096408}
-  - component: {fileID: 114603027393421204}
   - component: {fileID: 212725170634836838}
   m_Layer: 0
   m_Name: sprite
@@ -65,8 +65,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1558122056284512}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4984068260096408}
@@ -125,15 +125,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 3}
   m_EdgeRadius: 0
---- !u!114 &114603027393421204
+--- !u!114 &114950827515796238
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1888548035219012}
+  m_GameObject: {fileID: 1558122056284512}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5c5fcf2ab00445a8ac2102fcf0381c5, type: 3}
+  m_Script: {fileID: 11500000, guid: f8619fe2ba00cdf48befd0df05887b7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _playerScore: 0
