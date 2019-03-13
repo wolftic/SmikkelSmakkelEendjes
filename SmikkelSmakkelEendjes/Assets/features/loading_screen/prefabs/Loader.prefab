@@ -209,10 +209,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -297,6 +297,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _loadingText: {fileID: 114404613845014520}
   _progressBar: {fileID: 114107629364721166}
+  _loadingCanvas: {fileID: 223422102471266912}
+  _popupCanvas: {fileID: 223996046560144532}
+  _popupsToSpawn:
+  - {fileID: 114066550772885636, guid: 0c66f93117efe8841813eeb6903631bc, type: 2}
 --- !u!114 &114972118076657020
 MonoBehaviour:
   m_ObjectHideFlags: 1
