@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 224744024190898666}
   - component: {fileID: 223149574034970418}
   - component: {fileID: 114767010469425226}
-  - component: {fileID: 114826633462746448}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -88,8 +87,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scenePrefabs:
-  - {fileID: 114198256968867108, guid: 11462764296ad5942b10bc7d0377233d, type: 2}
-  - {fileID: 114198256968867108, guid: 4a5aef8239c374a418c4e8ad817472d0, type: 2}
+  - {fileID: 114384169151890658, guid: efa0ffd09aeafa5448c1675bd3ea826d, type: 2}
+  - {fileID: 114433786782843218, guid: 4a5aef8239c374a418c4e8ad817472d0, type: 2}
   - {fileID: 114198256968867108, guid: 12eba14898833ac48a92daea73f933fd, type: 2}
   _transitionImage: {fileID: 114254389757171072}
 --- !u!114 &114254389757171072
@@ -140,22 +139,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114826633462746448
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1138189252684894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!222 &222332798761869070
 CanvasRenderer:
   m_ObjectHideFlags: 1
