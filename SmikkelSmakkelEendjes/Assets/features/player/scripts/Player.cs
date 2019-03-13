@@ -1,13 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     private int _playerID;
+    [SerializeField]
     private int _playerScore;
     [SerializeField]
-    private GameObject _biteField;
+    private BoxCollider2D _biteField;
 
     public void Init(int id)
     {
@@ -22,7 +24,7 @@ public class Player : MonoBehaviour
     /// </summary>
     public void Bite()
     {
-        PlayerController.Instance.Bite(_playerID, _biteField.transform.position);
+        PlayerController.Instance.Bite(_playerID, _biteField.transform.position, _biteField.size);
     }
 
     private void OnBite(int id)
