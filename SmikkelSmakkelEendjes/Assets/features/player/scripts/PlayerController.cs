@@ -30,7 +30,7 @@ public class PlayerController : Singleton<PlayerController>
     /// </summary>
     /// <param name="playerId"></param>
     /// <param name="position"></param>
-    public void Bite(int playerId, Vector3 position)
+    public void Bite(int playerId, Vector3 position, Vector3 size)
     {
         //can player bite? (powerup effects check)
 
@@ -39,7 +39,9 @@ public class PlayerController : Singleton<PlayerController>
         Collider2D[] colliders;
 
         // check if we hit food and also receive all colliders
-        bool hit = HitCheckController.Instance.CheckHit(playerId, position, out colliders);
+        bool hit = HitCheckController.Instance.CheckHit(playerId, position, size, out colliders);
+
+        Debug.Log("hit: " + hit);
 
         //check if we hit some food
         if (hit)
@@ -50,6 +52,7 @@ public class PlayerController : Singleton<PlayerController>
             // loop through all colliders
             for (int i = 0; i < colliders.Length; i++)
             {
+                Debug.Log(colliders[i].gameObject.name);
                 food = colliders[i].GetComponent<Food>();
 
                 // check if the collider we've touched is actually food
