@@ -52,7 +52,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
     public static bool HasInstance()
     {
-        return m_Instance != null;
+        return m_Instance != null && !m_ShuttingDown;
     }
 
     private void OnApplicationQuit()

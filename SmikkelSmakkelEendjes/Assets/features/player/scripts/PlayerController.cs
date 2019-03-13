@@ -7,6 +7,7 @@ public class PlayerController : Singleton<PlayerController>
 {
     public Action OnLoaded;
 
+    public Action<int> OnPlayerRequestBite;
     public Action<int> OnPlayerBite;
     public Action<int, int> OnScoreRecieved;
 
@@ -23,6 +24,11 @@ public class PlayerController : Singleton<PlayerController>
         ResetAllPlayers();
 
         if (OnLoaded != null) OnLoaded();
+    }
+
+    public void RequestBite(int playerId) 
+    {
+        if (OnPlayerRequestBite != null) OnPlayerRequestBite(playerId);
     }
 
     /// <summary>

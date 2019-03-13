@@ -6,8 +6,14 @@ public class PlayerCreator : MonoBehaviour
 {
     [SerializeField]
     private Player _playerPrefab;
+    [SerializeField]
+    private PlayerUI _playerUIPrefab;
+
+    [SerializeField]
+    private List<GameObject> _playerSpawnPoints, _playerUISpawnPoints;
 
     private List<Player> _players = new List<Player>();
+    private List<PlayerUI> _playerUIs = new List<PlayerUI>();
        
     private void Awake()
     {
@@ -22,11 +28,24 @@ public class PlayerCreator : MonoBehaviour
 
     private void OnPlayerCreate(int id)
     {
-        Player player = Instantiate(_playerPrefab);
+        if (id >= _playerSpawnPoints.Count) return;
+
+        Player player = Instantiate(_playerPrefab.gameObject).GetComponent<Player>();
+         
+        player.transform.position = Vector3.zero;
+        player.transform.SetParent(_playerSpawnPoints[id].transform, false);
 
         player.Init(id);
 
+        PlayerUI playerUI = Instantiate(_playerUIPrefab.gameObject).GetComponent<PlayerUI>();
+
+        playerUI.transform.position = Vector3.zero;
+        playerUI.transform.SetParent(_playerUISpawnPoints[id].transform, false);
+
+        playerUI.Init(id);
+
         _players.Add(player);
+        _playerUIs.Add(playerUI);
     }
 
     private void OnResetAllPlayers()
@@ -36,7 +55,13 @@ public class PlayerCreator : MonoBehaviour
             Destroy(_players[i].gameObject);
         }
 
+        for (int i = 0; i < _playerUIs.Count; i++)
+        {
+            Destroy(_playerUIs[i].gameObject);
+        }
+
         _players.Clear();
+        _playerUIs.Clear();
     }
 
     private void OnDestroy()
