@@ -62,7 +62,6 @@ public class PlayerController : Singleton<PlayerController>
             // loop through all colliders
             for (int i = 0; i < colliders.Length; i++)
             {
-                Debug.Log(colliders[i].gameObject.name);
                 food = colliders[i].GetComponent<Food>();
 
                 // check if the collider we've touched is actually food
@@ -70,6 +69,7 @@ public class PlayerController : Singleton<PlayerController>
 
                 // add score based on foods score amount
                 score += food.ScoreAmount;
+                FoodSpawner.Instance.MoveBackFood(food.ID);
             }
 
             // give the score to the player with that id

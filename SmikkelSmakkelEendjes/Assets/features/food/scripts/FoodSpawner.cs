@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class FoodSpawner : Singleton<FoodSpawner> {
 
-    private const int FOOD_AMOUNT = 4;
+    private const int FOOD_AMOUNT = 10;
     private const int CHANCE_THRESHOLD = 20; //Percent chance of special food
-    private const float MAX_FOOD_SPEED = 0.04f;
-    private const float MIN_FOOD_SPEED = 0.01f;
+    private const float MAX_FOOD_SPEED = 1f;
+    private const float MIN_FOOD_SPEED = 0.25f;
     private const float MAX_ROTATION_SPEED = 10;
     private const float MIN_ROTATION_SPEED = -10;
     private const int SPAWN_RATE = 1;
@@ -21,17 +21,19 @@ public class FoodSpawner : Singleton<FoodSpawner> {
         Food[] _foods = new Food[FOOD_AMOUNT];
         for (int i = 0; i < FOOD_AMOUNT; i++)
         {
-            GameObject obj = Instantiate(foodObj, new Vector3(3, i), Quaternion.identity);
+            GameObject obj = Instantiate(foodObj, Vector3.zero, Quaternion.identity);
             Food tempFood = (Food)obj.AddComponent(typeof(Food));
+
             tempFood.Init(i, RandomSpeed(), RandomRotation(), 1, _foodNames[RandomSpriteIndex()]);
+            
             _foods[i] = tempFood;
         }
         FoodController.Instance.SaveFood(_foods);
     }
-    public void MoveBackFood(int id, float spawnPosX)
+    public void MoveBackFood(int id)
     {
         FoodController.Instance.InitFood(id, RandomSpeed(), RandomRotation(), 1, _foodNames[RandomSpriteIndex()]);
-        FoodController.Instance.MoveBackFood(id, spawnPosX);
+        FoodController.Instance.MoveBackFood(id);
     }
     public float RandomSpeed()
     {
