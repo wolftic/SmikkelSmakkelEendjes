@@ -1,26 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     private int _playerID;
+    [SerializeField]
     private int _playerScore;
+    [SerializeField]
+    private BoxCollider2D _biteField;
 
     public void Init(int id)
     {
         _playerID = id;
 
         PlayerController.Instance.OnScoreRecieved += OnScoreRecieved;
+        PlayerController.Instance.OnPlayerRequestBite += OnPlayerRequestBite;
         PlayerController.Instance.OnPlayerBite += OnBite;
     }
-
-    /// <summary>
-    /// Gets triggered by Unity UI Button
-    /// </summary>
-    public void Bite()
+    
+    private void Bite()
     {
-        PlayerController.Instance.Bite(_playerID, transform.position);
+        PlayerController.Instance.Bite(_playerID, _biteField.transform.position, _biteField.size);
+    }
+
+    private void OnPlayerRequestBite(int id)
+    {
+        if (_playerID != id) return;
+        Bite();
     }
 
     private void OnBite(int id)
@@ -44,7 +52,11 @@ public class Player : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerController.Instance.OnScoreRecieved -= OnScoreRecieved;
-        PlayerController.Instance.OnPlayerBite -= OnBite;
+        if (PlayerController.HasInstance())
+        {
+            PlayerController.Instance.OnScoreRecieved -= OnScoreRecieved;
+            PlayerController.Instance.OnPlayerRequestBite -= OnPlayerRequestBite;
+            PlayerController.Instance.OnPlayerBite -= OnBite;
+        }
     }
 }
