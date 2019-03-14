@@ -334,7 +334,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerPrefab: {fileID: 114950827515796238, guid: c9a792c6b8d690b45919194aa7c282a4,
     type: 2}
+  _botPrefab: {fileID: 114035287567593976, guid: 285fb4cb1c595e34e966d1b9ff19f327,
+    type: 2}
   _playerUIPrefab: {fileID: 114905937988664694, guid: 2fe36249c91b59e40adaa1dee93ddf87,
+    type: 2}
+  _botUIPrefab: {fileID: 114905937988664694, guid: e50803b326d30d0439548b95b8245978,
     type: 2}
   _playerSpawnPoints:
   - {fileID: 1309102378421940}
