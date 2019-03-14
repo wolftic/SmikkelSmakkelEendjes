@@ -2,15 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Food  :  MonoBehaviour
+public class Food : MonoBehaviour
 {
-    public int Speed
+    public Vector3 Position
     {
-        get;
-        private set;
+        get { return this.transform.position; }
+        set { this.transform.position = value; }
     }
-
-    public int Size
+    public Vector3 Rotation
+    {
+        get { return this.transform.localEulerAngles; }
+        set { this.transform.localEulerAngles = value; }
+    }
+    public Sprite Sprite
+    {
+        get { return this.GetComponent<SpriteRenderer>().sprite; }
+        set { this.GetComponent<SpriteRenderer>().sprite = value; }
+    }
+    public float Speed
     {
         get;
         private set;
@@ -22,18 +31,24 @@ public class Food  :  MonoBehaviour
         private set;
     }
 
-    public void Init(int speed, int size, int scoreAmount)
+    public int ID
     {
-        Reset();
-        Speed = speed;
-        Size = size;
-        ScoreAmount = scoreAmount;
+        get;
+        private set;
     }
 
-    private void Reset()
+    public float RotationSpeed
     {
-        Speed = 0;
-        Size = 0;
-        ScoreAmount = 0;
+        get;
+        private set;
+    }
+
+    public void Init(int id, float speed, float rotationSpeed, int scoreAmount, string sprite)
+    {
+        Speed = speed;
+        ScoreAmount = scoreAmount;
+        ID = id;
+        RotationSpeed = rotationSpeed;
+        Sprite = Resources.Load<Sprite>(sprite);
     }
 }
