@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private int _playerID;
+    protected int _playerID;
     [SerializeField]
     private int _playerScore;
     [SerializeField]
