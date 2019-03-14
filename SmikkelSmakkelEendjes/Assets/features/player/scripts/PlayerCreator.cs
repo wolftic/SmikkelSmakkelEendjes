@@ -66,7 +66,10 @@ public class PlayerCreator : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerController.Instance.OnPlayerCreate -= OnPlayerCreate;
-        PlayerController.Instance.OnResetAllPlayers -= OnResetAllPlayers;
+        if (PlayerController.HasInstance())
+        {
+            PlayerController.Instance.OnPlayerCreate -= OnPlayerCreate;
+            PlayerController.Instance.OnResetAllPlayers -= OnResetAllPlayers;
+        }
     }
 }
