@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InGameStateScene : GameStateScene {
-    private bool _playerVsBot = false;
+    private bool _playerVsBot = true;
     
     public void JoinPlayer()
     {
@@ -12,7 +12,7 @@ public class InGameStateScene : GameStateScene {
 
     public void StartMatch()
     {
-        PlayerController.Instance.AddPlayers(2);
+        PlayerController.Instance.AddPlayers(_playerVsBot ? 1 : 2);
     }
 
     public override void Open()

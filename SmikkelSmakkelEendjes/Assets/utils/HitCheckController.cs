@@ -7,7 +7,7 @@ public class HitCheckController : Singleton<HitCheckController>
     private const float ROTATION_ANGLE = 45f;
     private const float ANGLE_DIFFERENCE = 90f;
 
-    public bool CheckHit(int playerId, Vector3 position, Vector3 size, out Collider2D[] colliders)
+    public bool CheckHit(Vector3 position, Vector3 size, out Collider2D[] colliders)
     {
         int layerMask = LayerMask.GetMask("Food");//LayerMask.NameToLayer("Food");
 
