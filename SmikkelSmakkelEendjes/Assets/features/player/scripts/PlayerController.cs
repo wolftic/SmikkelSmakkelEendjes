@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : Singleton<PlayerController>
 {
+    private const float BITE_COOLDOWN = .4f;
+
     public Action OnLoaded;
 
     public Action<int> OnPlayerRequestBite;
@@ -20,6 +22,8 @@ public class PlayerController : Singleton<PlayerController>
     {
         get { return _playerCount; }
     }
+
+    private List<float> _cooldowns = new List<float>();
 
     /// <summary>
     /// Initialize Player controller
@@ -44,7 +48,11 @@ public class PlayerController : Singleton<PlayerController>
     public void Bite(int playerId, Vector3 position, Vector3 size)
     {
         //can player bite? (powerup effects check)
+        if (_cooldowns.Count <= playerId) return;
+        if (_cooldowns[playerId] > Time.time) return;
+
         if (OnPlayerBite != null) OnPlayerBite(playerId);
+        _cooldowns[playerId] = Time.time + BITE_COOLDOWN;
 
         Collider2D[] colliders;
 
@@ -110,6 +118,7 @@ public class PlayerController : Singleton<PlayerController>
     /// <param name="id"></param>
     private void AddPlayer(int id)
     {
+        _cooldowns.Add(0f);
         if (OnPlayerCreate != null) OnPlayerCreate(id);
     }
 
@@ -119,6 +128,7 @@ public class PlayerController : Singleton<PlayerController>
     public void ResetAllPlayers()
     {
         _playerCount = 0;
+        _cooldowns.Clear();
         if (OnResetAllPlayers != null) OnResetAllPlayers();
     }
 }
