@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class FoodChecker : MonoBehaviour {
     private const float SCREEN_WIDTH = 3f;
-
+    [SerializeField]
+    private GameObject _splashAnimation;
     void Update()
     {
         if (FoodController.Instance.Foods.Length <= 0) return;

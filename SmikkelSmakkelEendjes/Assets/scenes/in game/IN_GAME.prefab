@@ -692,11 +692,10 @@ MonoBehaviour:
   _foodPrefab: {fileID: 1310285534906840, guid: 454461aeca066ff4cbac96d305fca5b8,
     type: 2}
   _spawnPositions:
-  - {fileID: 1528650514189516}
-  - {fileID: 1563405530700672}
-  - {fileID: 1350979558189228}
-  - {fileID: 1831820124734004}
-  - {fileID: 1761798373749898}
+  - {fileID: 1699055672280702, guid: ac9451ac2aa1b4744b800f43ef845a1d, type: 2}
+  - {fileID: 1150702749961724, guid: 40065ebdef717a04182a49b8eaec58a7, type: 2}
+  _splashAnimation: {fileID: 1062911094478930, guid: 0f478782bc6be674081e2f5159634c49,
+    type: 2}
 --- !u!114 &114468955991614508
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -751,6 +750,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07ac6c247b36101488bd50faa7567c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _splashAnimation: {fileID: 1062911094478930, guid: 0f478782bc6be674081e2f5159634c49,
+    type: 2}
 --- !u!114 &114780653524777598
 MonoBehaviour:
   m_ObjectHideFlags: 1
