@@ -13,6 +13,7 @@ public class FoodController : Singleton<FoodController> {
 
     public Food[] Foods = new Food[] {};
     private List<GameObject> _spawnPoints = new List<GameObject>();
+    private GameObject _splashAnimation;
     
     void Start()
     {
@@ -24,8 +25,9 @@ public class FoodController : Singleton<FoodController> {
         if (OnDestroyed != null) OnDestroyed(id);
 
     }
-    public void Init(List<GameObject> spawnPoints)
+    public void Init(List<GameObject> spawnPoints, GameObject splashAnim)
     {
+        _splashAnimation = splashAnim;
         _spawnPoints = spawnPoints;
     }
     public void AddScore(int id)
@@ -60,7 +62,12 @@ public class FoodController : Singleton<FoodController> {
     
     public Vector3 GetRandomSpawnPoint()  
     {
-        Vector3 result = _spawnPoints[(int)UnityEngine.Random.Range(0, _spawnPoints.Count)].transform.position;
+        float res = UnityEngine.Random.Range(_spawnPoints[0].transform.position.y, _spawnPoints[_spawnPoints.Count - 1].transform.position.y);
+        Vector3 result = new Vector3(_spawnPoints[0].transform.position.x, res);
         return result;
+    }
+    public void SpawnSplashAnimation(int id)
+    {
+        Destroy(Instantiate(_splashAnimation, FoodController.Instance.Foods[id].Position, Quaternion.identity), 0.75f);
     }
 }

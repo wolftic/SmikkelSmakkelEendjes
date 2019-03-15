@@ -90,6 +90,7 @@ public class PlayerController : Singleton<PlayerController>
 
                 // add score based on foods score amount
                 score += food.ScoreAmount;
+                FoodController.Instance.SpawnSplashAnimation(food.ID);
                 FoodSpawner.Instance.MoveBackFood(food.ID);
             }
 

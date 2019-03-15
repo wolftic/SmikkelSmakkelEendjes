@@ -7,6 +7,8 @@ public class InGameStateScene : GameStateScene {
     private GameObject _foodPrefab;
     [SerializeField]
     private List<GameObject> _spawnPositions = new List<GameObject>();
+    [SerializeField]
+    private GameObject _splashAnimation;
     
     private bool _playerVsBot = true;
     
@@ -18,7 +20,7 @@ public class InGameStateScene : GameStateScene {
     public void StartMatch()
     {
         PlayerController.Instance.AddPlayers(_playerVsBot ? 1 : 2);
-        FoodController.Instance.Init(_spawnPositions);
+        FoodController.Instance.Init(_spawnPositions, _splashAnimation);
         FoodSpawner.Instance.Init(_foodPrefab);
     }
 

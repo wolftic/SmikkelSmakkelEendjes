@@ -7,10 +7,10 @@ public class FoodSpawner : Singleton<FoodSpawner> {
 
     private const int FOOD_AMOUNT = 10;
     private const int CHANCE_THRESHOLD = 20; //Percent chance of special food
-    private const float MAX_FOOD_SPEED = 10f;
-    private const float MIN_FOOD_SPEED = 5f;
-    private const float MAX_ROTATION_SPEED = 10;
-    private const float MIN_ROTATION_SPEED = -10;
+    private const float MAX_FOOD_SPEED = 5f;
+    private const float MIN_FOOD_SPEED = 1f;
+    private const float MAX_ROTATION_SPEED = 0;
+    private const float MIN_ROTATION_SPEED = -0;
     private const int SPAWN_RATE = 1;
     private string[] _foodNames = new string[]{"erwt1", "erwt2", "erwt3"};
 
