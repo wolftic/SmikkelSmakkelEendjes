@@ -48,12 +48,25 @@ public class PlayerController : Singleton<PlayerController>
     public void Bite(int playerId, Vector3 position, Vector3 size)
     {
         //can player bite? (powerup effects check)
-        if (_cooldowns.Count <= playerId) return;
+        if (_cooldowns.Count <= playerId) 
+        {
+            int count = _cooldowns.Count;
+            for (int i = count; i < playerId + 1; i++)
+            {
+                _cooldowns.Add(0f);
+            }    
+        }
+
         if (_cooldowns[playerId] > Time.time) return;
 
         if (OnPlayerBite != null) OnPlayerBite(playerId);
         _cooldowns[playerId] = Time.time + BITE_COOLDOWN;
 
+        
+    }
+
+    public void UnsafeDoCheck(int playerId, Vector3 position, Vector3 size) 
+    {
         Collider2D[] colliders;
 
         // check if we hit food and also receive all colliders
@@ -118,7 +131,6 @@ public class PlayerController : Singleton<PlayerController>
     /// <param name="id"></param>
     private void AddPlayer(int id)
     {
-        _cooldowns.Add(0f);
         if (OnPlayerCreate != null) OnPlayerCreate(id);
     }
 

@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 4162618974994338}
   - component: {fileID: 212607771324667108}
   - component: {fileID: 95846107777095348}
+  - component: {fileID: 114636422380270592}
   m_Layer: 0
   m_Name: duck
   m_TagString: Untagged
@@ -143,7 +144,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05, y: 0}
+  m_Offset: {x: 0.05, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -154,7 +155,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 3}
+  m_Size: {x: 1.5, y: 4}
   m_EdgeRadius: 0
 --- !u!95 &95846107777095348
 Animator:
@@ -165,7 +166,7 @@ Animator:
   m_GameObject: {fileID: 1783048362040584}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f79320bdd1e1c54409f60a51b20acd9d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5b5372ec6bc863842ad971394397b2b0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -173,6 +174,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114636422380270592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1783048362040584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ce706b56e9e2f409e3e8e614a69dad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114950827515796238
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,12 +199,6 @@ MonoBehaviour:
   _playerScore: 0
   _biteField: {fileID: 61099952639089384}
   _animation: {fileID: 95846107777095348}
-  _moveForward:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!212 &212607771324667108
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -226,7 +232,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 36b5573d2e2f8fd418f39f21aea9a3e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

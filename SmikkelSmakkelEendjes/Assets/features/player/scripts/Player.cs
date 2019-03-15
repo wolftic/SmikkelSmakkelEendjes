@@ -42,6 +42,12 @@ public class Player : MonoBehaviour
         _animation.SetTrigger("Eat");
     }
 
+    // called by animation
+    public void AnimationDoBite()
+    {
+        PlayerController.Instance.UnsafeDoCheck(_playerID, _biteField.transform.position, _biteField.size);
+    }
+
     private void OnScoreRecieved(int id, int score)
     {
         if (_playerID != id) return;
