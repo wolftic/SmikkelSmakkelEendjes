@@ -12,9 +12,14 @@ public class PlayerController : Singleton<PlayerController>
     public Action<int, int> OnScoreRecieved;
 
     public Action<int> OnPlayerCreate;
+    public Action OnPlayersCreated;
     public Action OnResetAllPlayers;
 
-    private List<int> _players = new List<int>();
+    private int _playerCount;
+    public int PlayerCount 
+    {
+        get { return _playerCount; }
+    }
 
     /// <summary>
     /// Initialize Player controller
@@ -39,13 +44,12 @@ public class PlayerController : Singleton<PlayerController>
     public void Bite(int playerId, Vector3 position, Vector3 size)
     {
         //can player bite? (powerup effects check)
-
         if (OnPlayerBite != null) OnPlayerBite(playerId);
 
         Collider2D[] colliders;
 
         // check if we hit food and also receive all colliders
-        bool hit = HitCheckController.Instance.CheckHit(playerId, position, size, out colliders);
+        bool hit = HitCheckController.Instance.CheckHit(position, size, out colliders);
 
         Debug.Log("hit: " + hit);
 
@@ -58,7 +62,6 @@ public class PlayerController : Singleton<PlayerController>
             // loop through all colliders
             for (int i = 0; i < colliders.Length; i++)
             {
-                Debug.Log(colliders[i].gameObject.name);
                 food = colliders[i].GetComponent<Food>();
 
                 // check if the collider we've touched is actually food
@@ -66,6 +69,7 @@ public class PlayerController : Singleton<PlayerController>
 
                 // add score based on foods score amount
                 score += food.ScoreAmount;
+                FoodSpawner.Instance.MoveBackFood(food.ID);
             }
 
             // give the score to the player with that id
@@ -90,11 +94,14 @@ public class PlayerController : Singleton<PlayerController>
     public void AddPlayers(int playerAmount)
     {
         ResetAllPlayers();
+        _playerCount = playerAmount;
 
         for (int i = 0; i < playerAmount; i++)
         {
             AddPlayer(i);
         }
+
+        if (OnPlayersCreated != null) OnPlayersCreated();
     }
 
     /// <summary>
@@ -103,7 +110,6 @@ public class PlayerController : Singleton<PlayerController>
     /// <param name="id"></param>
     private void AddPlayer(int id)
     {
-        _players.Add(id);
         if (OnPlayerCreate != null) OnPlayerCreate(id);
     }
 
@@ -112,7 +118,7 @@ public class PlayerController : Singleton<PlayerController>
     /// </summary>
     public void ResetAllPlayers()
     {
-        _players.Clear();
+        _playerCount = 0;
         if (OnResetAllPlayers != null) OnResetAllPlayers();
     }
 }

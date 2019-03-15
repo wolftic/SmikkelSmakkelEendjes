@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class FoodChecker : MonoBehaviour {
     private const float SCREEN_WIDTH = 3f;
+
     void Update()
     {
         if (FoodController.Instance.Foods.Length <= 0) return;
@@ -14,7 +15,7 @@ public class FoodChecker : MonoBehaviour {
             FoodController.Instance.RotateFood(i);
             if(FoodController.Instance.Foods[i].transform.position.x <= -SCREEN_WIDTH)
             {
-                FoodSpawner.Instance.MoveBackFood(i, SCREEN_WIDTH);
+                FoodSpawner.Instance.MoveBackFood(i);
             }
         }
     }

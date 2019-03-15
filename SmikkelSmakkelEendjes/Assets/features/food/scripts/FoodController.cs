@@ -11,7 +11,9 @@ public class FoodController : Singleton<FoodController> {
     public Action<int> OnMovedBack;
     public Action OnFoodSaved;
 
-    public Food[] Foods;
+    public Food[] Foods = new Food[] {};
+    private List<GameObject> _spawnPoints = new List<GameObject>();
+    
     void Start()
     {
 
@@ -22,9 +24,10 @@ public class FoodController : Singleton<FoodController> {
         if (OnDestroyed != null) OnDestroyed(id);
 
     }
-    
-    void Update () {
-	}
+    public void Init(List<GameObject> spawnPoints)
+    {
+        _spawnPoints = spawnPoints;
+    }
     public void AddScore(int id)
     {
         if (OnScore != null) OnScore(Foods[id].ScoreAmount);
@@ -32,14 +35,19 @@ public class FoodController : Singleton<FoodController> {
     public void SaveFood(Food[] food)
     {
         Foods = food;
+
+        for (int i = 0; i < food.Length; i++)
+        {
+            MoveBackFood(i);
+        }
     }
-    public void MoveBackFood(int id, float moveAmount)
+    public void MoveBackFood(int id)
     {
-        Foods[id].transform.position = new Vector3(moveAmount, id);
+        Foods[id].transform.position = GetRandomSpawnPoint();
     }
     public void MoveFood(int id)
     {
-        Foods[id].transform.position += new Vector3(-Foods[id].Speed, 0);
+        Foods[id].transform.position += new Vector3(-Foods[id].Speed * Time.deltaTime, 0);
     }
     public void InitFood(int id, float speed, float rotationSpeed, int scoreAmount, string sprite)
     {
@@ -47,6 +55,12 @@ public class FoodController : Singleton<FoodController> {
     }
     public void RotateFood(int id)
     {
-        Foods[id].transform.localEulerAngles += new Vector3(0, 0, Foods[id].RotationSpeed);
+        Foods[id].transform.localEulerAngles += new Vector3(0, 0, Foods[id].RotationSpeed * Time.deltaTime);
+    }
+    
+    public Vector3 GetRandomSpawnPoint()  
+    {
+        Vector3 result = _spawnPoints[(int)UnityEngine.Random.Range(0, _spawnPoints.Count)].transform.position;
+        return result;
     }
 }
