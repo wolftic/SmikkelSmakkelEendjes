@@ -68,6 +68,6 @@ public class FoodController : Singleton<FoodController> {
     }
     public void SpawnSplashAnimation(int id)
     {
-        Destroy(Instantiate(_splashAnimation, FoodController.Instance.Foods[id].Position, Quaternion.identity), 0.5f);
+        Destroy(Instantiate(_splashAnimation, FoodController.Instance.Foods[id].Position, Quaternion.identity), 0.75f);
     }
 }
