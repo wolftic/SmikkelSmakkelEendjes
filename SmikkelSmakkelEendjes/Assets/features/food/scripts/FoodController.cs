@@ -60,7 +60,8 @@ public class FoodController : Singleton<FoodController> {
     
     public Vector3 GetRandomSpawnPoint()  
     {
-        Vector3 result = _spawnPoints[(int)UnityEngine.Random.Range(0, _spawnPoints.Count)].transform.position;
+        float res = UnityEngine.Random.Range(_spawnPoints[0].transform.position.y, _spawnPoints[_spawnPoints.Count - 1].transform.position.y);
+        Vector3 result = new Vector3(_spawnPoints[0].transform.position.x, res);
         return result;
     }
 }
