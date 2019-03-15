@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,8 @@ public class Player : MonoBehaviour
     private int _playerScore;
     [SerializeField]
     private BoxCollider2D _biteField;
+    [SerializeField]
+    private Animator _animation;
 
     public void Init(int id)
     {
@@ -36,6 +39,7 @@ public class Player : MonoBehaviour
         if (_playerID != id) return;
 
         //do animation
+        _animation.SetTrigger("Eat");
     }
 
     private void OnScoreRecieved(int id, int score)
